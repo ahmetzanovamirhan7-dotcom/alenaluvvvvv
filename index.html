@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Для Алёны ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffb6c1, #ee6a91, #c85078);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            padding: 35px;
+            max-width: 550px;
+            width: 90%;
+            position: relative;
+            z-index: 2;
+            animation: appear 1s ease;
+        }
+
+        .heart {
+            font-size: 80px;
+            margin-bottom: 25px;
+            animation: pulse 1.5s infinite;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: 19px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        button {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #d94b78;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 5px 25px rgba(255,255,255,0.4);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            bottom: -50px;
+            opacity: 0.7;
+            animation: floatUp 8s linear forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+
+        <div class="heart">❤️</div>
+
+        <h1>Солнышко мое</h1>
+
+        <p>
+            Я сделал прикол пока ты спала
+        </p>
+
+        <button onclick="openMessage()">
+            Жмакай сюда ❤️
+        </button>
+
+    </div>
+
+
+    <script>
+
+        // ПЕРВЫЙ ЭКРАН — ПРИЗНАНИЕ
+
+        function openMessage() {
+
+            const container = document.getElementById("container");
+
+            container.innerHTML = `
+                <div class="heart">💗</div>
+
+                <h1>Солнышко мое</h1>
+
+                <p>
+                    Каждый день с тобой — это безумное счастье.
+                
+                    Ты мой мир, мой ангелочек, моя рыбка.
+                    
+                    Я вижу, как ты каждый день стараешься для меня,
+                    и очень это ценю.
+
+                    Пусть это маленькое послание
+                    сделает тебя счастливой хотя бы сегодня.
+
+                    <strong>Я очень сильно тебя люблю ❤️</strong>
+                </p>
+
+                <h2>А ты меня? 🥺</h2>
+
+                <button onclick="showAnswer()">
+                    Да, конечно! ❤️
+                </button>
+            `;
+
+            animateContainer();
+        }
+
+
+        // ВТОРОЙ ЭКРАН — ФИНАЛ
+
+        function showAnswer() {
+
+            const container = document.getElementById("container");
+
+            container.innerHTML = `
+                <div class="heart">💖</div>
+
+                <h1>Ты делаешь меня счастливой каждый день!</h1>
+
+                <p>
+                    Я безумно дорожу тобой.
+                
+
+                    Спасибо, что ты есть в моей жизни.
+                    
+
+                    <strong>Ты мой выбор пуси. ❤️</strong>
+                </p>
+
+                <div class="heart">💋</div>
+            `;
+
+            animateContainer();
+
+            // Маленький салют из сердечек
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+
+        // АНИМАЦИЯ ПЕРЕХОДА
+
+        function animateContainer() {
+
+            const container = document.getElementById("container");
+
+            container.style.animation = "none";
+
+            void container.offsetWidth;
+
+            container.style.animation = "appear 1s ease";
+        }
+
+
+        // СОЗДАНИЕ ПЛАВАЮЩИХ СЕРДЕЧЕК
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            heart.innerHTML = ["❤️", "💗", "💕", "💖"][
+                Math.floor(Math.random() * 4)
+            ];
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            heart.style.fontSize =
+                (15 + Math.random() * 30) + "px";
+
+            heart.style.animationDuration =
+                (5 + Math.random() * 5) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+
+        // АВТОМАТИЧЕСКИЕ СЕРДЕЧКИ НА ФОНЕ
+
+        setInterval(createHeart, 700);
+
+    </script>
+
+</body>
+</html>
